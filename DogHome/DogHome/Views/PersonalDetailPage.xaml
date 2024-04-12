@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView
+    x:Class="DogHome.Views.PersonalDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+    <StackLayout Spacing="8" WidthRequest="400">
+        <Label
+            FontAttributes="Bold"
+            FontFamily="Lobster"
+            FontSize="16"
+            HorizontalOptions="Center"
+            Text="Personal Information"
+            VerticalOptions="Center" />
+
+        <Entry
+            BackgroundColor="{AppThemeBinding Light=#F2F2F2,
+                                              Dark=#333333}"
+            Placeholder="Full Name"
+            Text="{Binding FullName}" />
+        <StackLayout>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition />
+                </Grid.ColumnDefinitions>
+
+                <Label
+                    Grid.Row="0"
+                    Grid.Column="0"
+                    Text="Date of Birth: "
+                    VerticalOptions="Center" />
+                <DatePicker
+                    Grid.Row="0"
+                    Grid.Column="1"
+                    BackgroundColor="{AppThemeBinding Light=#F2F2F2,
+                                                      Dark=#333333}"
+                    Date="{Binding DateOfBirth}"
+                    HorizontalOptions="FillAndExpand"
+                    WidthRequest="200" />
+                <Label
+                    Grid.Row="1"
+                    Grid.Column="0"
+                    Text="Gender:"
+                    VerticalOptions="Center" />
+                <StackLayout
+                    Grid.Row="1"
+                    Grid.Column="1"
+                    Orientation="Horizontal">
+                    <RadioButton
+                        Content="Male"
+                        GroupName="SelectionGroup"
+                        IsChecked="{Binding MaleRadio}" />
+                    <RadioButton
+                        Content="Female"
+                        GroupName="SelectionGroup"
+                        IsChecked="{Binding FemaleRadio}" />
+                </StackLayout>
+            </Grid>
+
+        </StackLayout>
+        <Entry
+            BackgroundColor="{AppThemeBinding Light=#F2F2F2,
+                                              Dark=#333333}"
+            Placeholder="Phone Number"
+            Text="{Binding PhoneNumber}" />
+        <Entry
+            BackgroundColor="{AppThemeBinding Light=#F2F2F2,
+                                              Dark=#333333}"
+            Placeholder="Address"
+            Text="{Binding Address}" />
+        <Button
+            Margin="0,5"
+            Command="{Binding NextCommand}"
+            CornerRadius="23"
+            Text="Next"
+            WidthRequest="220" />
+    </StackLayout>
+</ContentView>

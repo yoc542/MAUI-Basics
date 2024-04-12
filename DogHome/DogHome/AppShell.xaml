@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<Shell
+    x:Class="DogHome.AppShell"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:DogHome"
+    xmlns:pages="clr-namespace:DogHome.Views"
+    Title="DogHome"
+    Shell.FlyoutBehavior="Disabled"
+    Shell.NavBarIsVisible="false">
+
+    <ShellContent ContentTemplate="{DataTemplate pages:OnboardingPage}" Route="OnboardingPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:RegisterPage}" Route="RegisterPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:LoginPage}" Route="LoginPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:MainDogsPage}" Route="MainDogsPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:ProfilePage}" Route="ProfilePage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:AddDogsPage}" Route="AddDogsPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:BuyerFormPage}" Route="BuyerFormPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:FormSubmitPage}" Route="FormSubmitPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:SellerDogsPage}" Route="SellerDogsPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:SellersListPage}" Route="SellersListPage" />
+    <ShellContent ContentTemplate="{DataTemplate pages:DogDetailPage}" Route="DogDetailPage" />
+</Shell>

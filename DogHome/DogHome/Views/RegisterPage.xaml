@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.RegisterPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:valueconverters="clr-namespace:DogHome.Converters"
+    BackgroundColor="#FFF6F2">
+    <ContentPage.Resources>
+        <valueconverters:ViewModelToViewConverter x:Key="ViewModelToViewConverter" />
+    </ContentPage.Resources>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding BackCommand}" Text=" Back" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <Border
+            BackgroundColor="#FFF6F2"
+            HeightRequest="60"
+            StrokeThickness="0">
+            <Border.Shadow>
+                <Shadow Brush="#FFAB94" Radius="120" />
+            </Border.Shadow>
+            <Grid
+                Padding="30,10"
+                BackgroundColor="#FFF6F2"
+                ColumnSpacing="30"
+                Opacity="0.7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="880" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    Text="PetMatch"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    x:Name="BackLabel"
+                    Grid.Column="3"
+                    Text="Back"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+
+                    </Label.GestureRecognizers>
+                </Label>
+
+            </Grid>
+        </Border>
+        <Border
+            Margin="0,30"
+            Padding="10,0"
+            Background="white"
+            WidthRequest="530">
+            <Border.Shadow>
+                <Shadow
+                    Brush="#F98866"
+                    Opacity="0"
+                    Radius="0"
+                    Offset="20,20" />
+            </Border.Shadow>
+            <VerticalStackLayout VerticalOptions="Center">
+
+                <Label
+                    Margin="0,20"
+                    FontAttributes="Bold"
+                    FontFamily="Ariel"
+                    FontSize="38"
+                    HorizontalOptions="Center"
+                    Text="Create Your Account"
+                    VerticalOptions="Center" />
+
+                <StackLayout>
+                    <StackLayout Margin="10" Padding="10">
+                        <ContentView Content="{Binding SelectedViewModel, Converter={StaticResource ViewModelToViewConverter}}" />
+                    </StackLayout>
+                </StackLayout>
+            </VerticalStackLayout>
+        </Border>
+    </StackLayout>
+</ContentPage>

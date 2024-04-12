@@ -1,0 +1,215 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.MainDogsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:DogHome.Model"
+    xmlns:viewmodel="clr-namespace:DogHome.ViewModel"
+    x:DataType="viewmodel:MainDogsViewModel"
+    BackgroundColor="#FFF6F2"
+    Shell.NavBarIsVisible="false">
+    <ScrollView x:Name="MainPageScroll">
+        <StackLayout>
+            <Border
+                BackgroundColor="#FFF6F2"
+                HeightRequest="60"
+                StrokeThickness="0">
+                <Border.Shadow>
+                    <Shadow Brush="#FFAB94" Radius="120" />
+                </Border.Shadow>
+                <Grid
+                    Padding="30,10"
+                    BackgroundColor="#FFF6F2"
+                    ColumnSpacing="30"
+                    Opacity="0.7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="880" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        Text="PetMatch"
+                        VerticalTextAlignment="Center" />
+
+                    <Label
+                        x:Name="SellerLabel"
+                        Grid.Column="2"
+                        Text="List of Sellers"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding SellerListCommand}" />
+                            <PointerGestureRecognizer PointerEntered="OnPointerEntered" PointerExited="OnPointerExited" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label
+                        x:Name="BackLabel"
+                        Grid.Column="3"
+                        Text="Back"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" />
+                            <PointerGestureRecognizer PointerEntered="OnPointerEntered" PointerExited="OnPointerExited" />
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Grid>
+            </Border>
+            <VerticalStackLayout Padding="70,20">
+
+                <Grid Margin="30,0">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <VerticalStackLayout
+                        Grid.Column="0"
+                        Padding="10,40"
+                        HorizontalOptions="Start"
+                        Spacing="10">
+                        <Label
+                            FontAttributes="Bold"
+                            FontSize="50"
+                            Text="Welcome to PetMatch" />
+                        <Label Text="Explore a world of diverse dog breeds, perfect for every lifestyle." />
+                        <Button
+                            x:Name="DiscoverButton"
+                            Margin="0,10"
+                            Clicked="DiscoverButton_Clicked"
+                            CornerRadius="20"
+                            HorizontalOptions="Start"
+                            Text="Discover More"
+                            WidthRequest="200" />
+                    </VerticalStackLayout>
+                    <Image
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Source="landingdog.png" />
+                </Grid>
+
+                <HorizontalStackLayout Padding="50,0" Spacing="50">
+                    <Border HorizontalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20, 20, 20, 20" />
+                        </Border.StrokeShape>
+                        <SearchBar
+                            HeightRequest="20"
+                            Placeholder="Search Breeds"
+                            Text="{Binding SearchTerm}"
+                            WidthRequest="500" />
+                    </Border>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Margin="270,17,0,0"
+                            FontFamily="FaSolid"
+                            Text="{x:Static model:IconFont.AngleDown}" />
+                        <Label
+                            Grid.Row="0"
+                            Margin="20,0"
+                            HorizontalTextAlignment="Start"
+                            IsVisible="{Binding IsLabelvisible}"
+                            Opacity="1"
+                            Text="Default Sorting"
+                            TextColor="{AppThemeBinding Light=Black,
+                                                        Dark=White}"
+                            VerticalOptions="Center" />
+                        <Border>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="20,20,20,20" />
+                            </Border.StrokeShape>
+                            <Picker
+                                Grid.Row="0"
+                                Opacity="{Binding Opacity}"
+                                SelectedItem="{Binding PickerValue}"
+                                TextColor="Black"
+                                WidthRequest="300">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Sort by price: low to high</x:String>
+                                        <x:String>Sort by age: small to big</x:String>
+                                        <x:String>Sort by size: larger to small</x:String>
+                                        <x:String>Sort by price: high to low</x:String>
+                                        <x:String>Sort by age: big to small</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </Border>
+                    </Grid>
+                    <Button
+                        Command="{Binding RefreshCommand}"
+                        CornerRadius="23"
+                        Text="Reset"
+                        WidthRequest="120" />
+                </HorizontalStackLayout>
+
+                <CollectionView
+                    Margin="40,20"
+                    ItemsLayout="VerticalGrid,3"
+                    ItemsSource="{Binding Dogs}">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate x:DataType="model:Dog">
+                            <StackLayout>
+                                <Frame
+                                    Margin="90,19"
+                                    Padding="0,0"
+                                    BackgroundColor="{AppThemeBinding Light=#FFFFFF,
+                                                                      Dark=#333333}"
+                                    WidthRequest="330">
+                                    <StackLayout Padding="0,0">
+                                        <Image
+                                            Aspect="AspectFill"
+                                            HeightRequest="300"
+                                            Source="{Binding ImagePath}" />
+                                        <StackLayout
+                                            Padding="5"
+                                            HorizontalOptions="Center"
+                                            Orientation="Horizontal"
+                                            Spacing="150">
+                                            <Label
+                                                Grid.Row="0"
+                                                Grid.Column="1"
+                                                FontAttributes="Bold"
+                                                FontSize="Small"
+                                                Text="{Binding Name}" />
+
+                                            <Label
+                                                Grid.Row="2"
+                                                Grid.Column="1"
+                                                FontAttributes="Italic"
+                                                Text="{Binding Price, StringFormat='Rs. {0}'}"
+                                                VerticalOptions="End" />
+                                        </StackLayout>
+
+                                    </StackLayout>
+                                    <Frame.GestureRecognizers>
+                                        <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodel:MainDogsViewModel}}, Path=DisplayDetailCommand}" CommandParameter="{Binding .}" />
+                                    </Frame.GestureRecognizers>
+                                </Frame>
+
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <ActivityIndicator
+                    x:Name="LoadingIndicator"
+                    Margin="30,30"
+                    HeightRequest="300"
+                    HorizontalOptions="Center"
+                    IsRunning="{Binding IsLoading}"
+                    IsVisible="{Binding IsLoading}"
+                    VerticalOptions="Center"
+                    WidthRequest="300" />
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.LoginPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#FFF6F2">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding BackCommand}" Text="Back" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <Border
+            BackgroundColor="#FFF6F2"
+            HeightRequest="60"
+            StrokeThickness="0">
+            <Border.Shadow>
+                <Shadow Brush="#FFAB94" Radius="120" />
+            </Border.Shadow>
+            <Grid
+                Padding="30,10"
+                BackgroundColor="#FFF6F2"
+                ColumnSpacing="30"
+                Opacity="0.7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="880" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    Text="PetMatch"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    x:Name="BackLabel"
+                    Grid.Column="3"
+                    Text="Back"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Border>
+        <Border
+            Margin="0,30"
+            Padding="20,50"
+            Background="white"
+            WidthRequest="500">
+            <Border.Shadow>
+                <Shadow
+                    Brush="#F98866"
+                    Opacity="0"
+                    Radius="0"
+                    Offset="20,20" />
+            </Border.Shadow>
+            <VerticalStackLayout Spacing="20" VerticalOptions="Center">
+
+                <Label
+                    Margin="0,20"
+                    FontAttributes="Bold"
+                    FontFamily="Ariel"
+                    FontSize="38"
+                    HorizontalOptions="Center"
+                    Text="Login to your Account"
+                    VerticalOptions="Center" />
+
+                <Entry
+                    Placeholder="Email"
+                    Text="{Binding Email}"
+                    WidthRequest="410" />
+
+                <Entry
+                    IsPassword="True"
+                    Placeholder="Password"
+                    Text="{Binding Password}"
+                    WidthRequest="410" />
+                <Button
+                    Command="{Binding LoginCommand}"
+                    CornerRadius="23"
+                    Text="Sign in"
+                    WidthRequest="220" />
+                <Label
+                    FontSize="12"
+                    HorizontalOptions="Center"
+                    Text="New here? Sign up as a seller" />
+                <Button
+                    Command="{Binding RegisterCommand}"
+                    CornerRadius="23"
+                    Text="Register"
+                    WidthRequest="220" />
+            </VerticalStackLayout>
+        </Border>
+    </StackLayout>
+</ContentPage>

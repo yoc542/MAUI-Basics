@@ -1,0 +1,143 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.FormSubmitPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#FFF6F2">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding BackCommand}" Text="Back" />
+    </ContentPage.ToolbarItems>
+    <StackLayout>
+        <Border
+            BackgroundColor="#FFF6F2"
+            HeightRequest="60"
+            StrokeThickness="0">
+            <Border.Shadow>
+                <Shadow Brush="#FFAB94" Radius="120" />
+            </Border.Shadow>
+            <Grid
+                Padding="30,10"
+                BackgroundColor="#FFF6F2"
+                ColumnSpacing="30"
+                Opacity="0.7">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="880" />
+                    <ColumnDefinition Width="100" />
+                    <ColumnDefinition Width="Auto" />
+                </Grid.ColumnDefinitions>
+                <Label
+                    Grid.Column="0"
+                    FontAttributes="Bold"
+                    FontSize="Small"
+                    Text="PetMatch"
+                    VerticalTextAlignment="Center" />
+                <Label
+                    x:Name="BackLabel"
+                    Grid.Column="3"
+                    Text="Back"
+                    VerticalTextAlignment="Center">
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding BackCommand}" />
+
+                    </Label.GestureRecognizers>
+                </Label>
+            </Grid>
+        </Border>
+        <Border
+            Margin="0,30"
+            Background="white"
+            WidthRequest="530">
+            <VerticalStackLayout Padding="30,30" Spacing="10">
+                <Label
+                    FontAttributes="Bold"
+                    FontSize="Medium"
+                    HorizontalOptions="Start"
+                    Text="Submit a Form"
+                    VerticalOptions="Center" />
+                <Grid RowSpacing="10">
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+
+                    <Label
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        Text="Name"
+                        VerticalTextAlignment="Center" />
+                    <Entry
+                        x:Name="NameEntry"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        Placeholder="Your Name"
+                        Text="{Binding Buyer.BuyerName}" />
+                    <Label
+                        Grid.Row="1"
+                        Grid.Column="0"
+                        Text="Contact"
+                        VerticalTextAlignment="Center" />
+                    <Entry
+                        x:Name="ContactEntry"
+                        Grid.Row="1"
+                        Grid.Column="1"
+                        Placeholder="Your Contact"
+                        Text="{Binding Buyer.BuyerContact}" />
+                    <HorizontalStackLayout
+                        Grid.Row="2"
+                        Grid.ColumnSpan="2"
+                        VerticalOptions="Center">
+                        <Label Text="Visit Time" VerticalOptions="Center" />
+                        <DatePicker
+                            Margin="35,0,0,0"
+                            BackgroundColor="{AppThemeBinding Light=#F2F2F2,
+                                                              Dark=#333333}"
+                            Date="{Binding DateOnly}"
+                            VerticalOptions="Center"
+                            WidthRequest="130" />
+                        <TimePicker
+                            Time="{Binding TimeOnly}"
+                            VerticalOptions="Center"
+                            WidthRequest="220" />
+                    </HorizontalStackLayout>
+                    <Label
+                        Grid.Row="3"
+                        Grid.Column="0"
+                        Text="Query" />
+                    <Entry
+                        x:Name="QueryEntry"
+                        Grid.Row="3"
+                        Grid.Column="1"
+                        Placeholder="Query"
+                        Text="{Binding Buyer.Query}" />
+                    <Label
+                        Grid.Row="4"
+                        Grid.Column="0"
+                        Text="Interested Dogs" />
+                    <Entry
+                        x:Name="DogsEntry"
+                        Grid.Row="4"
+                        Grid.Column="1"
+                        Placeholder="Interested Breeds"
+                        Text="{Binding Buyer.InterestedDogs}" />
+
+                    <Button
+                        Grid.Row="5"
+                        Grid.Column="1"
+                        Command="{Binding FormSubmitCommand}"
+                        CornerRadius="23"
+                        Text="Submit"
+                        WidthRequest="220" />
+                </Grid>
+            </VerticalStackLayout>
+        </Border>
+    </StackLayout>
+</ContentPage>

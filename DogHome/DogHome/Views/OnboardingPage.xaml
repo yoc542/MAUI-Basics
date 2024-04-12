@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.OnboardingPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:local="clr-namespace:DogHome.Views"
+    BackgroundColor="#FFF6F2">
+    <VerticalStackLayout>
+        <Label
+            Margin="0,40,0,0"
+            FontAttributes="Bold"
+            FontSize="Large"
+            HorizontalOptions="Center"
+            Text="Welcome to PetMatch"
+            VerticalOptions="Center" />
+        <Label
+            Margin="7"
+            HorizontalOptions="Center"
+            Text="Are you a seller? Sign up now!" />
+
+        <Frame
+            x:Name="SellerFrame"
+            Margin="10"
+            Background="{AppThemeBinding Light=#FFFFFF,
+                                         Dark=#333333}"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="650">
+            <Frame.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="OnPointerEntered" PointerExited="OnPointerExited" />
+            </Frame.GestureRecognizers>
+            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image
+                    Margin="0,0,50,0"
+                    Aspect="AspectFit"
+                    HeightRequest="190"
+                    Source="seller.png"
+                    WidthRequest="200" />
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    Spacing="15"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="Seller" />
+                    <Label Text="Show your Dogs to customers" />
+                    <Button
+                        Command="{Binding DisplayLoginPageCommand}"
+                        CornerRadius="23"
+                        Text="Sign up or Login as Seller"
+                        WidthRequest="220" />
+                </StackLayout>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Frame
+            x:Name="CustomerFrame"
+            Margin="10"
+            Background="{AppThemeBinding Light=#FFFFFF,
+                                         Dark=#333333}"
+            HorizontalOptions="Center"
+            VerticalOptions="Center"
+            WidthRequest="650">
+            <Frame.GestureRecognizers>
+                <PointerGestureRecognizer PointerEntered="OnPointerEntered" PointerExited="OnPointerExited" />
+            </Frame.GestureRecognizers>
+            <HorizontalStackLayout HorizontalOptions="Center" VerticalOptions="Center">
+                <Image
+                    Margin="0,0,50,0"
+                    Aspect="AspectFill"
+                    HeightRequest="190"
+                    Source="buyer.png"
+                    WidthRequest="220" />
+                <StackLayout
+                    HorizontalOptions="Center"
+                    Orientation="Vertical"
+                    Spacing="15"
+                    VerticalOptions="Center">
+                    <Label
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="Customer" />
+                    <Label Text="Explore different dog breeds" />
+                    <Button
+                        Command="{Binding DisplayHomePageCommand}"
+                        CornerRadius="23"
+                        Text="Find Dogs for your home"
+                        WidthRequest="200" />
+                </StackLayout>
+            </HorizontalStackLayout>
+        </Frame>
+
+        <Label x:Name="label" />
+    </VerticalStackLayout>
+</ContentPage>

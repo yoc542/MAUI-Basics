@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.SellersListPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:DogHome.Model"
+    xmlns:viewmodel="clr-namespace:DogHome.ViewModel"
+    x:DataType="viewmodel:SellersListViewModel"
+    BackgroundColor="#FFF6F2"
+    Shell.NavBarIsVisible="false">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding BackCommand}" Text="Back" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout>
+            <Border
+                BackgroundColor="#FFF6F2"
+                HeightRequest="60"
+                StrokeThickness="0">
+                <Border.Shadow>
+                    <Shadow Brush="#FFAB94" Radius="120" />
+                </Border.Shadow>
+                <Grid
+                    Padding="30,10"
+                    BackgroundColor="#FFF6F2"
+                    ColumnSpacing="30"
+                    Opacity="0.7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="880" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        Text="PetMatch"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        x:Name="BackLabel"
+                        Grid.Column="3"
+                        Text="Back"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" />
+
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Grid>
+            </Border>
+
+            <VerticalStackLayout Padding="90,20">
+                <Border Padding="30,30" BackgroundColor="White">
+                    <Border.StrokeShape>
+                        <RoundRectangle CornerRadius="10,10,10,10" />
+                    </Border.StrokeShape>
+                    <StackLayout BackgroundColor="White">
+                        <Label
+                            Margin="0,0,0,9"
+                            FontAttributes="Bold"
+                            FontSize="Medium"
+                            HorizontalOptions="Start"
+                            Text="List of Sellers"
+                            VerticalOptions="Center" />
+                        <Frame Padding="0,0" BackgroundColor="White">
+                            <StackLayout>
+                                <Grid
+                                    Margin="0"
+                                    Padding="20,10"
+                                    BackgroundColor="{AppThemeBinding Light=#F2F2F2,
+                                                                      Dark=#333333}"
+                                    HeightRequest="40"
+                                    VerticalOptions="Center">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Label
+                                        Grid.Column="0"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                        Text="Name"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Grid.Column="1"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                        Text="Contact"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Grid.Column="2"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                        Text="ShopName"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Grid.Column="3"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                        Text="Location"
+                                        VerticalOptions="End" />
+                                    <Label
+                                        Grid.Column="4"
+                                        FontAttributes="Bold"
+                                        HorizontalOptions="Start"
+                                        Text="Social Site"
+                                        VerticalOptions="End" />
+                                </Grid>
+
+                                <CollectionView ItemsSource="{Binding Sellers}">
+                                    <CollectionView.ItemTemplate>
+                                        <DataTemplate x:DataType="model:Auth">
+                                            <Frame BackgroundColor="{AppThemeBinding Light=#FFFFFF, Dark=#333333}" BorderColor="White">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                        <ColumnDefinition />
+                                                    </Grid.ColumnDefinitions>
+                                                    <Label
+                                                        Grid.Column="0"
+                                                        FontAttributes="Italic"
+                                                        HorizontalOptions="Start"
+                                                        Text="{Binding FullName}"
+                                                        VerticalOptions="End" />
+                                                    <Label
+                                                        Grid.Column="1"
+                                                        FontAttributes="Italic"
+                                                        Text="{Binding Phone}"
+                                                        VerticalOptions="End" />
+                                                    <Label
+                                                        Grid.Column="2"
+                                                        FontAttributes="Italic"
+                                                        Text="{Binding ShopName}"
+                                                        VerticalOptions="End" />
+                                                    <Label
+                                                        Grid.Column="3"
+                                                        FontAttributes="Italic"
+                                                        Text="{Binding Location}"
+                                                        VerticalOptions="End" />
+                                                    <Label
+                                                        Grid.Column="4"
+                                                        FontAttributes="Italic"
+                                                        Text="{Binding SocialSite}"
+                                                        VerticalOptions="End" />
+                                                </Grid>
+                                                <Frame.GestureRecognizers>
+                                                    <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodel:SellersListViewModel}}, Path=FormCommand}" CommandParameter="{Binding .}" />
+                                                </Frame.GestureRecognizers>
+                                            </Frame>
+                                        </DataTemplate>
+                                    </CollectionView.ItemTemplate>
+                                </CollectionView>
+                                <ActivityIndicator
+                                    HeightRequest="300"
+                                    IsRunning="{Binding IsLoading}"
+                                    IsVisible="{Binding IsLoading}"
+                                    WidthRequest="300" />
+                            </StackLayout>
+                        </Frame>
+                    </StackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

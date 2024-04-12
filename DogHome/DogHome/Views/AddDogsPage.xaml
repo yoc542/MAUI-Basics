@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.AddDogsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    BackgroundColor="#FFF6F2">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding BackCommand}" Text="Back" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout>
+            <Border
+                BackgroundColor="#FFF6F2"
+                HeightRequest="60"
+                StrokeThickness="0">
+                <Border.Shadow>
+                    <Shadow Brush="#FFAB94" Radius="120" />
+                </Border.Shadow>
+                <Grid
+                    Padding="30,10"
+                    BackgroundColor="#FFF6F2"
+                    ColumnSpacing="30"
+                    Opacity="0.7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="880" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        Text="PetMatch"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        x:Name="BackLabel"
+                        Grid.Column="3"
+                        Text="Back"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" />
+
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Grid>
+            </Border>
+
+            <Border
+                Margin="0,30"
+                Background="white"
+                WidthRequest="800">
+                <VerticalStackLayout Padding="50,30">
+                    <Label
+                        Margin="0,0,0,30"
+                        FontAttributes="Bold"
+                        FontSize="Medium"
+                        Text="Dog information"
+                        VerticalTextAlignment="Center" />
+                    <Grid ColumnSpacing="0" RowSpacing="10">
+                        <Grid.RowDefinitions>
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                            <RowDefinition />
+                        </Grid.RowDefinitions>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="290" />
+                            <ColumnDefinition Width="*" />
+                            <ColumnDefinition Width="290" />
+                        </Grid.ColumnDefinitions>
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            Text="Name:"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            Placeholder="Enter Name "
+                            Text="{Binding Dog.Name}" />
+
+
+                        <Label
+                            Grid.Row="0"
+                            Grid.Column="2"
+                            Margin="10,0"
+                            Text="Price:"
+                            VerticalTextAlignment="Center" />
+                        <Entry
+                            Grid.Row="0"
+                            Grid.Column="3"
+                            Placeholder="Enter Price "
+                            Text="{Binding Dog.Price}" />
+
+                        <Label
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            Text="Age:"
+                            VerticalOptions="Center" />
+                        <Entry
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            HeightRequest="40"
+                            Placeholder="Enter Age"
+                            Text="{Binding Dog.Age}" />
+
+                        <StackLayout
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            Grid.ColumnSpan="2"
+                            Orientation="Horizontal"
+                            VerticalOptions="Center">
+                            <Label
+                                Text="Select Gender:"
+                                VerticalOptions="Center"
+                                VerticalTextAlignment="Center" />
+                            <RadioButton
+                                Content="Male"
+                                GroupName="SelectionGroup"
+                                IsChecked="{Binding MaleRadio}"
+                                VerticalOptions="Center" />
+                            <RadioButton
+                                Content="Female"
+                                GroupName="SelectionGroup"
+                                IsChecked="{Binding FemaleRadio}" />
+                        </StackLayout>
+
+                        <HorizontalStackLayout Grid.Row="1" Grid.ColumnSpan="4">
+                            <Label Text="Grooming Needs: " VerticalOptions="Center" />
+                            <Entry
+                                Margin="10,0"
+                                Placeholder="Enter GroomingNeeds "
+                                Text="{Binding Dog.GroomingNeeds}"
+                                WidthRequest="500" />
+
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Grid.Row="3" Grid.ColumnSpan="2">
+                            <Label Text="Select Size:" VerticalTextAlignment="Center" />
+
+                            <Picker
+                                Margin="10,0"
+                                BackgroundColor="{AppThemeBinding Light=#F2F2F2,
+                                                                  Dark=#333333}"
+                                HorizontalOptions="Start"
+                                SelectedItem="{Binding Dog.Size}"
+                                WidthRequest="280">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Small</x:String>
+                                        <x:String>Medium</x:String>
+                                        <x:String>Large</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </HorizontalStackLayout>
+                        <HorizontalStackLayout Grid.Row="2" Grid.ColumnSpan="4">
+                            <Label Text="Select Breed:" VerticalTextAlignment="Center" />
+                            <Picker
+                                Margin="10,0"
+                                BackgroundColor="{AppThemeBinding Light=#F2F2F2,
+                                                                  Dark=#333333}"
+                                ItemsSource="{Binding BreedOptions}"
+                                SelectedItem="{Binding SelectedBreed}"
+                                WidthRequest="260" />
+
+                            <Button Command="{Binding AddNewBreedCommand}" Text="+" />
+                            <Entry
+                                IsVisible="{Binding BreedEntry}"
+                                Placeholder="Enter Breed"
+                                Text="{Binding NewBreed}"
+                                WidthRequest="200" />
+                            <Button
+                                Command="{Binding SubmitBreedCommand}"
+                                IsVisible="{Binding BreedEntry}"
+                                Text="Submit" />
+                        </HorizontalStackLayout>
+                        <Button
+                            Grid.Row="3"
+                            Grid.Column="2"
+                            Grid.ColumnSpan="2"
+                            Margin="10,0"
+                            Command="{Binding UploadImageCommand}"
+                            CornerRadius="20"
+                            Text="Upload Image"
+                            WidthRequest="200" />
+                        <Image
+                            Grid.Row="4"
+                            Grid.RowSpan="3"
+                            Grid.Column="3"
+                            HeightRequest="200"
+                            IsVisible="{Binding VisibleImage}"
+                            Source="{Binding ImagePath}"
+                            WidthRequest="200" />
+                        <Button
+                            Grid.Row="7"
+                            Grid.Column="3"
+                            Command="{Binding AddCommand}"
+                            Text="Add Data" />
+                    </Grid>
+                </VerticalStackLayout>
+            </Border>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

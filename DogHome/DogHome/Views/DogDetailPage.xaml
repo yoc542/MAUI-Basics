@@ -1,0 +1,191 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.DogDetailPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:DogHome.Model"
+    BackgroundColor="#FFF6F2">
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Command="{Binding BackCommand}" Text="Back" />
+    </ContentPage.ToolbarItems>
+    <ScrollView>
+        <StackLayout>
+            <Border
+                BackgroundColor="#FFF6F2"
+                HeightRequest="60"
+                StrokeThickness="0">
+                <Border.Shadow>
+                    <Shadow Brush="#FFAB94" Radius="120" />
+                </Border.Shadow>
+                <Grid
+                    Padding="30,10"
+                    BackgroundColor="#FFF6F2"
+                    ColumnSpacing="30"
+                    Opacity="0.7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="880" />
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        Text="PetMatch"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        x:Name="BackLabel"
+                        Grid.Column="3"
+                        Text="Back"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BackCommand}" />
+
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Grid>
+            </Border>
+            <VerticalStackLayout Padding="80,40">
+                <Border BackgroundColor="White">
+                    <StackLayout Padding="0,0" Orientation="Horizontal">
+                        <Image
+                            Aspect="AspectFill"
+                            Source="{Binding Dog.ImagePath}"
+                            WidthRequest="600" />
+
+                        <StackLayout
+                            Margin="20,0"
+                            Padding="0,20"
+                            Orientation="Vertical">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height="60" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="*" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition Height="30" />
+                                    <RowDefinition />
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150" />
+                                    <ColumnDefinition Width="300" />
+                                </Grid.ColumnDefinitions>
+                                <Label
+                                    Grid.Row="0"
+                                    Grid.Column="0"
+                                    FontSize="Medium"
+                                    Text="{Binding Dog.Name}" />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Age " />
+                                <Label
+                                    Grid.Row="1"
+                                    Grid.Column="1"
+                                    Text="{Binding Dog.Age}" />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Gender " />
+                                <Label
+                                    Grid.Row="2"
+                                    Grid.Column="1"
+                                    Text="{Binding Dog.Gender}" />
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Price " />
+                                <Label
+                                    Grid.Row="3"
+                                    Grid.Column="1"
+                                    Text="{Binding Dog.Price, StringFormat='Rs. {0}'}" />
+                                <Label
+                                    Grid.Row="4"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Grooming Needs " />
+                                <Label
+                                    Grid.Row="4"
+                                    Grid.Column="1"
+                                    Text="{Binding Dog.GroomingNeeds}" />
+                                <Label
+                                    Grid.Row="5"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Size " />
+                                <Label
+                                    Grid.Row="5"
+                                    Grid.Column="1"
+                                    Text="{Binding Dog.Size}" />
+                                <Label
+                                    Grid.Row="6"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Breed " />
+                                <Label
+                                    Grid.Row="6"
+                                    Grid.Column="1"
+                                    Text="{Binding Breed}" />
+                                <Label
+                                    Grid.Row="7"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Seller " />
+                                <Label
+                                    Grid.Row="7"
+                                    Grid.Column="1"
+                                    Text="{Binding Seller.FullName}" />
+                                <Label
+                                    Grid.Row="8"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Shop Name " />
+                                <Label
+                                    Grid.Row="8"
+                                    Grid.Column="1"
+                                    Text="{Binding Seller.ShopName}" />
+                                <Label
+                                    Grid.Row="9"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="View Site " />
+                                <Label
+                                    Grid.Row="9"
+                                    Grid.Column="1"
+                                    Text="{Binding Seller.SocialSite}" />
+                                <Label
+                                    Grid.Row="10"
+                                    Grid.Column="0"
+                                    FontSize="16"
+                                    Text="Contact " />
+                                <Label
+                                    Grid.Row="10"
+                                    Grid.Column="1"
+                                    Text="{Binding Seller.Phone}" />
+                                <Button
+                                    Grid.Row="11"
+                                    Grid.Column="1"
+                                    Command="{Binding SubmitCommand}"
+                                    CornerRadius="23"
+                                    HorizontalOptions="Start"
+                                    Text="Submit a query "
+                                    WidthRequest="220" />
+                            </Grid>
+                        </StackLayout>
+                    </StackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>

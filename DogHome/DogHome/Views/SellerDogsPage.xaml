@@ -1,0 +1,266 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage
+    x:Class="DogHome.Views.SellerDogsPage"
+    xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    xmlns:model="clr-namespace:DogHome.Model"
+    xmlns:viewmodel="clr-namespace:DogHome.ViewModel"
+    x:DataType="viewmodel:SellerDogsViewModel"
+    BackgroundColor="#FFF6F2">
+
+    <ScrollView>
+        <StackLayout Orientation="Vertical">
+            <Border
+                BackgroundColor="#FFF6F2"
+                HeightRequest="60"
+                StrokeThickness="0">
+                <Border.Shadow>
+                    <Shadow Brush="#FFAB94" Radius="120" />
+                </Border.Shadow>
+                <Grid
+                    Padding="30,10"
+                    BackgroundColor="#FFF6F2"
+                    ColumnSpacing="30"
+                    Opacity="0.7">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="100" />
+                        <ColumnDefinition Width="780" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="Auto" />
+                    </Grid.ColumnDefinitions>
+                    <Label
+                        Grid.Column="0"
+                        FontAttributes="Bold"
+                        FontSize="Small"
+                        Text="PetMatch"
+                        VerticalTextAlignment="Center" />
+                    <Label
+                        Grid.Column="2"
+                        Text="Forms"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding BuyerFormCommand}" />
+
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label
+                        Grid.Column="3"
+                        Text="Profile"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding ProfileCommand}" />
+
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label
+                        Grid.Column="4"
+                        Text="Add Dogs"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding AddDogCommand}" />
+
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label
+                        Grid.Column="5"
+                        Text="Logout"
+                        VerticalTextAlignment="Center">
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Command="{Binding LogoutCommand}" />
+
+                        </Label.GestureRecognizers>
+                    </Label>
+
+                </Grid>
+            </Border>
+            <VerticalStackLayout Padding="30,20">
+                <HorizontalStackLayout Padding="50,0" Spacing="60">
+                    <Border HorizontalOptions="Center">
+                        <Border.StrokeShape>
+                            <RoundRectangle CornerRadius="20, 20, 20, 20" />
+                        </Border.StrokeShape>
+                        <SearchBar
+                            HeightRequest="20"
+                            Placeholder="Search Breeds"
+                            Text="{Binding SearchTerm}"
+                            WidthRequest="500" />
+                    </Border>
+                    <Grid>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="Auto" />
+                            <RowDefinition Height="Auto" />
+                        </Grid.RowDefinitions>
+                        <Label
+                            Margin="270,17,0,0"
+                            FontFamily="FaSolid"
+                            Text="{x:Static model:IconFont.AngleDown}" />
+                        <Label
+                            Grid.Row="0"
+                            Margin="20,0"
+                            HorizontalTextAlignment="Start"
+                            IsVisible="{Binding IsLabelvisible}"
+                            Opacity="1"
+                            Text="Default Sorting"
+                            TextColor="{AppThemeBinding Light=Black,
+                                                        Dark=White}"
+                            VerticalOptions="Center" />
+                        <Border>
+                            <Border.StrokeShape>
+                                <RoundRectangle CornerRadius="20,20,20,20" />
+                            </Border.StrokeShape>
+                            <Picker
+                                Grid.Row="0"
+                                Opacity="{Binding Opacity}"
+                                SelectedItem="{Binding PickerValue}"
+                                TextColor="Black"
+                                WidthRequest="300">
+                                <Picker.ItemsSource>
+                                    <x:Array Type="{x:Type x:String}">
+                                        <x:String>Sort by price: low to high</x:String>
+                                        <x:String>Sort by age: small to big</x:String>
+                                        <x:String>Sort by size: larger to small</x:String>
+                                        <x:String>Sort by price: high to low</x:String>
+                                        <x:String>Sort by age: big to small</x:String>
+                                    </x:Array>
+                                </Picker.ItemsSource>
+                            </Picker>
+                        </Border>
+                    </Grid>
+                    <Button
+                        Command="{Binding RefreshCommand}"
+                        CornerRadius="23"
+                        Text="Reset"
+                        WidthRequest="120" />
+                </HorizontalStackLayout>
+                <Border
+                    Margin="50,30"
+                    Padding="20,20"
+                    BackgroundColor="White">
+                    <StackLayout>
+                        <Grid
+                            Margin="10"
+                            ColumnSpacing="20"
+                            VerticalOptions="Center">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="90" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition Width="120" />
+                                <ColumnDefinition />
+                            </Grid.ColumnDefinitions>
+
+                            <Label
+                                Grid.Column="0"
+                                FontAttributes="Bold"
+                                HorizontalOptions="Start"
+                                Text="Image"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="1"
+                                FontAttributes="Bold"
+                                Text="Name"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="2"
+                                FontAttributes="Bold"
+                                Text="Age"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="3"
+                                FontAttributes="Bold"
+                                Text="Price"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="4"
+                                FontAttributes="Bold"
+                                Text="Gender"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="5"
+                                FontAttributes="Bold"
+                                Text="Size"
+                                VerticalOptions="End" />
+                            <Label
+                                Grid.Column="6"
+                                FontAttributes="Bold"
+                                Text="Grooming Needs"
+                                VerticalOptions="End" />
+                        </Grid>
+                        <CollectionView ItemsSource="{Binding Dogs}">
+                            <CollectionView.ItemTemplate>
+                                <DataTemplate x:DataType="model:Dog">
+                                    <StackLayout>
+                                        <Frame Padding="0,0" BackgroundColor="{AppThemeBinding Light=#FFFFFF}">
+
+                                            <Grid
+                                                Margin="10"
+                                                ColumnSpacing="20"
+                                                VerticalOptions="Center">
+                                                <Grid.ColumnDefinitions>
+                                                    <ColumnDefinition Width="120" />
+                                                    <ColumnDefinition Width="120" />
+                                                    <ColumnDefinition Width="90" />
+                                                    <ColumnDefinition Width="120" />
+                                                    <ColumnDefinition Width="120" />
+                                                    <ColumnDefinition Width="120" />
+                                                    <ColumnDefinition />
+                                                </Grid.ColumnDefinitions>
+                                                <Image
+                                                    Grid.Column="0"
+                                                    Aspect="AspectFill"
+                                                    HeightRequest="100"
+                                                    Source="{Binding ImagePath}"
+                                                    WidthRequest="100" />
+
+                                                <Label
+                                                    Grid.Column="1"
+                                                    FontAttributes="Bold"
+                                                    Text="{Binding Name}" />
+                                                <Label
+                                                    Grid.Column="2"
+                                                    FontAttributes="Italic"
+                                                    Text="{Binding Age}" />
+
+                                                <Label
+                                                    Grid.Column="4"
+                                                    FontAttributes="Italic"
+                                                    Text="{Binding Gender}" />
+                                                <Label
+                                                    Grid.Column="3"
+                                                    FontAttributes="Italic"
+                                                    Text="{Binding Price, StringFormat='Rs. {0}'}" />
+                                                <Label
+                                                    Grid.Column="5"
+                                                    FontAttributes="Italic"
+                                                    Text="{Binding Size}" />
+                                                <Label
+                                                    Grid.Column="6"
+                                                    FontAttributes="Italic"
+                                                    Text="{Binding GroomingNeeds}" />
+                                            </Grid>
+
+                                            <Frame.GestureRecognizers>
+                                                <TapGestureRecognizer Command="{Binding Source={x:RelativeSource AncestorType={x:Type viewmodel:SellerDogsViewModel}}, Path=DisplayOptionsCommand}" CommandParameter="{Binding .}" />
+                                            </Frame.GestureRecognizers>
+                                        </Frame>
+                                        <Frame
+                                            BackgroundColor="Transparent"
+                                            BorderColor="Transparent"
+                                            HeightRequest="20"
+                                            IsVisible="true" />
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CollectionView.ItemTemplate>
+                        </CollectionView>
+                    </StackLayout>
+                </Border>
+            </VerticalStackLayout>
+        </StackLayout>
+    </ScrollView>
+</ContentPage>
+
+
